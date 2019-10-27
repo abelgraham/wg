@@ -24,10 +24,12 @@ h2, h2 a {
     font-size: 2vw;
 }
 
-a {
-    padding: 1vw;
-    color: #be9b7b;
+p, p a{
     font-size: 1.5vw;
+}
+
+a {
+    color: #be9b7b;
 }
 
 footer {
