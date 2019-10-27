@@ -3,27 +3,34 @@ html {
 }
 
 body {
-    margin: 2em;
+    width: 60vw;
+    margin: auto;
+    margin-top: 8vh;
+    margin-bottom: 8vh;
     background-color: #3c2f2f;
-    border: 3px solid #854442;
+    border: 0.2vw solid #854442;
     color: #fff4e6;
-    padding: 1em;
+    padding: 0.5vw;
     text-align: center;
 }
 
-footer {
-    padding-top: 1em;
-    font-size: 12px;
+h1, h1 a {
+    padding-bottom: 1vh;
+    font-size: 3vw;
 }
 
-h1 {
-    margin-bottom: 10px;
-}
-
-h2 {
-    margin-bottom: 10px;
+h2, h2 a {
+    padding-bottom: 1vh;
+    font-size: 2vw;
 }
 
 a {
+    padding: 1vw;
     color: #be9b7b;
+    font-size: 1.5vw;
+}
+
+footer {
+    padding-top: 5vh;
+    font-size: 1.2vw;
 }
