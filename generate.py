@@ -6,7 +6,7 @@ from jinja2 import Template
 
 BASE_DIR = os.getcwd()
 CONTENT_DIR = os.path.join(BASE_DIR, 'content')
-OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
+OUTPUT_DIR = os.path.join(BASE_DIR, 'docs')
 STYLES_DIR = os.path.join(BASE_DIR, 'styles')
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 CONFIG = json.load(open(os.path.join(BASE_DIR, 'config.json')))
