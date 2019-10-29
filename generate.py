@@ -38,7 +38,8 @@ def main():
     if not os.path.exists(OUTPUT_DIR):
         os.mkdir(OUTPUT_DIR)
         
-    copyfile(os.path.join(STYLES_DIR, '%s.css' % (style)), os.path.join(OUTPUT_DIR, '%s.css' % (style))) 
+    copyfile(os.path.join(STYLES_DIR, '%s.css' % (style)), os.path.join(OUTPUT_DIR, '%s.css' % (style)))
+    copyfile(os.path.join(STYLES_DIR, 'spectre.min.css'), os.path.join(OUTPUT_DIR, 'spectre.min.css')) 
         
     generate_html(get_content())
 
