@@ -7,3 +7,8 @@ header, footer{
 header {
     margin-bottom: 50px;
 }
+
+.content {
+    padding-left: 100px;
+    padding-right: 100px;
+}
