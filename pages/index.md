@@ -7,7 +7,6 @@
 - wg takes Markdown.
 - wg does blogging.
 - wg is dead simple.
-- [wg is on GitHub.](https://github.com/abelgraham/wg)
 
 ## Usage
 ```
