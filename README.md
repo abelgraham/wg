@@ -1,9 +1,8 @@
 # wg
 
 ## What is wg?
-
 - wg is a static website generator.
-- wg is written in python.
+- wg is written in Python.
 - wg uses the Spectre.css.
 - wg uses Jinja2.
 - wg takes Markdown.
