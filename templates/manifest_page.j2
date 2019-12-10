@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="author" content="{{author}}">
+    
+    <link rel="stylesheet" href="{{style}}.css">
+    <link rel="stylesheet" href="spectre.min.css">
+  </head>
+  
+  <header class="navbar">
+    <section class="navbar-section">
+      <a href="http://{{url}}" class="btn btn-primary">{{title}}</a>
+    </section>
+    <section class="navbar-section">
+      <a href="mailto:{{email}}" class="btn btn-link">{{email}}</a>
+    </section>
+  </header>
+  
+  <body>
+    <div class="content">
+      <div class="container grid-lg">
+	<div class="columns">
+	  <div class="column col-xs-1">{{content}}</div>
+	</div>
+      </div>
+    </div>
+  </body>
+  
+  <footer>
+   <center><p>Copyright © {{year}} {{author}}</p></center>
+  </footer>
+</html>

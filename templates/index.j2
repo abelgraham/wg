@@ -11,26 +11,38 @@
     <link rel="stylesheet" href="{{style}}.css">
     <link rel="stylesheet" href="spectre.min.css">
   </head>
-
+  
   <header class="navbar">
     <section class="navbar-section">
-      <p class="btn btn-primary">{{title}}</p>
-    </section>
-    <section class="navbar-section">
-      <p>{{description}}</p>
+      <a href="http://{{url}}" class="btn btn-primary">{{title}}</a>
     </section>
   </header>
-
+  
   <body>
     <div class="content">
       <div class="container grid-lg">
 	<div class="columns">
 	  <div class="column col-xs-1">{{content}}</div>
+	  <div class="column col-xs-1">
+	    <div class="panel">
+	      <div class="panel-header">
+		<div class="panel-title">Blog</div>
+	      </div>
+	      <div class="panel-body">
+		{% for post in blog %}
+		 <a href="{{post.link}}">{{post.title}}</a></br>
+		{% endfor %}
+	      </div>
+	      <div class="panel-footer">
+		<!-- Just here for cozy space -->
+	      </div>
+	    </div>
+	  </div>
 	</div>
       </div>
-  </div>
-      
+  </body>
+  
   <footer>
-    <p>Copyright © {{year}} {{author}}</p>
+    <center><p>Copyright © {{year}} {{author}}</p></center>
   </footer>
 </html>
