@@ -1,9 +1,17 @@
 # wg
 
-**w**ebsite **g**enerator, a neat static site generator written in Python and utilizing Markdown, Jinja2, and Spectre to generate beautiful websites with absolutely no Javascript.
+## What is wg?
+
+- wg is a static website generator.
+- wg is written in python.
+- wg uses the Spectre.css.
+- wg uses Jinja2.
+- wg takes Markdown.
+- wg does blogging.
+- wg is dead simple.
+- [wg is on GitHub.](https://github.com/abelgraham/wg)
 
 ## Usage
-
-Put your Markdown content in the content folder and run ``python generate.py``
-
-Bim, bam, bang, check ``./docs``.
+```
+python generate.py
+```

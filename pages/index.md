@@ -9,7 +9,7 @@
 - wg is dead simple.
 - [wg is on GitHub.](https://github.com/abelgraham/wg)
 
-# Usage
+## Usage
 ```
 python generate.py
 ```
