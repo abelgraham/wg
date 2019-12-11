@@ -17,6 +17,8 @@ CONFIG = json.load(open(os.path.join(BASE_DIR, 'config.json')))
 atts = {}
 atts['year'] = datetime.datetime.now().year
 atts['blog'] = []
+atts['date'] = str(datetime.datetime.today().date())
+atts['post_title'] = "Preview"
 
 with(open(os.path.join(TEMPLATE_DIR, 'manifest_page.j2'))) as t:
     PAGE_TEMPLATE = Template(t.read())
@@ -47,30 +49,42 @@ def generate_html():
         atts[att] = CONFIG[att]
         
     # Generate the HTML for posts and prepare variables for get_pages
-    for file in get_posts():
-        with open(os.path.join(POST_DIR, file)) as f:
-            if os.path.isfile(os.path.join(BASE_DIR, POST_DIR, file.split('.')[0] + ".json")):
-                with(open(os.path.join(TEMPLATE_DIR, file.split('.')[0] + '.j2'))) as t:
-                    template = Template(t.read())
+    for x in get_posts():
+        atts['date'] = str(datetime.datetime.today().date())
+        atts['post_title'] = "Preview"
+        with open(os.path.join(POST_DIR, x)) as f:
+            if os.path.isfile(os.path.join(BASE_DIR, POST_DIR, x.split('.')[0] + ".json")):
+                with open(os.path.join(BASE_DIR, POST_DIR, x.split('.')[0] + '.json')) as s:
+                    j = json.load(s)
+                    if j['layout'] == 'default':
+                        template = POST_TEMPLATE
+
+                        atts['post_title'] = j['title']
+                        atts['date'] = j['date']
+                    else:
+                        t = j['layout']
+                        template = Template(t.read())
+
+                        atts['post_title'] = j['title']
+                        atts['date'] = j['date']
             else:
                 template = POST_TEMPLATE
 
             atts['content'] = mistune.markdown(f.read())
-            atts['post_title'] = ' '.join(file.split('_')[1].split('.')[0].split('-'))
-            atts['date'] = file.split('_')[0]
 
-        new_filename = os.path.splitext(file)[0] + '.html'
+        new_filename = atts['date'] + '_' + os.path.splitext(x)[0] + '.html'
         
         open(os.path.join(OUTPUT_DIR, BLOG_DIR, new_filename), 'w').write(template.render(atts))
+
         atts['blog'].append(
             {"title": atts['date'] + " / " + atts['post_title'],
-             "link": "blog/" + file.split('.')[0] + ".html"})
+             "link": "blog/" + new_filename})
         
     # Generate the HTML for pages
-    for file in get_pages():
-        with open(os.path.join(PAGE_DIR, file)) as f:
-            if os.path.isfile(os.path.join(BASE_DIR, PAGE_DIR, file.split('.')[0] + ".json")):
-                with(open(os.path.join(TEMPLATE_DIR, file.split('.')[0] + '.j2'))) as t:
+    for x in get_pages():
+        with open(os.path.join(PAGE_DIR, x)) as f:
+            if os.path.isfile(os.path.join(BASE_DIR, PAGE_DIR, x.split('.')[0] + ".json")):
+                with(open(os.path.join(TEMPLATE_DIR, x.split('.')[0] + '.j2'))) as t:
                     template = Template(t.read())
             else:
                 template = PAGE_TEMPLATE
@@ -78,7 +92,7 @@ def generate_html():
             content = f.read()
             atts['content'] = mistune.markdown(content) 
 
-        new_filename = os.path.splitext(file)[0] + '.html'
+        new_filename = os.path.splitext(x)[0] + '.html'
         
         open(os.path.join(OUTPUT_DIR, new_filename), 'w').write(template.render(atts))
 
@@ -87,7 +101,7 @@ def main():
         os.mkdir(OUTPUT_DIR)
     if not os.path.exists(BLOG_DIR):
         os.mkdir(BLOG_DIR)
-        
+    
     for entry in os.scandir(STYLES_DIR):
         if all([
             not entry.name.startswith('.'),
@@ -101,3 +115,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
