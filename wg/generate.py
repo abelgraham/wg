@@ -96,7 +96,7 @@ def generate_html():
         
         open(os.path.join(OUTPUT_DIR, new_filename), 'w').write(template.render(atts))
 
-def main():        
+def main():
     if not os.path.exists(OUTPUT_DIR):
         os.mkdir(OUTPUT_DIR)
     if not os.path.exists(BLOG_DIR):

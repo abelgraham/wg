@@ -1,0 +1,10 @@
+README.md
+setup.py
+wg/__init__.py
+wg/generate.py
+wg.egg-info/PKG-INFO
+wg.egg-info/SOURCES.txt
+wg.egg-info/dependency_links.txt
+wg.egg-info/entry_points.txt
+wg.egg-info/requires.txt
+wg.egg-info/top_level.txt
