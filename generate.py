@@ -1,7 +1,6 @@
 import os
 import json
 import datetime
-import datetime
 import mistune
 from shutil import copyfile
 from jinja2 import Template
