@@ -20,6 +20,9 @@ atts['blog'] = []
 atts['date'] = str(datetime.datetime.today().date())
 atts['post_title'] = "Preview"
 
+blog = []
+links = []
+
 with(open(os.path.join(TEMPLATE_DIR, 'manifest_page.j2'))) as t:
     PAGE_TEMPLATE = Template(t.read())
     
@@ -67,6 +70,7 @@ def generate_html():
 
                         atts['post_title'] = j['title']
                         atts['date'] = j['date']
+                        
             else:
                 template = POST_TEMPLATE
 
@@ -76,10 +80,22 @@ def generate_html():
         
         open(os.path.join(OUTPUT_DIR, BLOG_DIR, new_filename), 'w').write(template.render(atts))
 
-        atts['blog'].append(
-            {"title": atts['date'] + " / " + atts['post_title'],
-             "link": "blog/" + new_filename})
-        
+
+    # This is a hack solution, there's probably a better way to do this
+    for entry in os.scandir(BLOG_DIR):
+        if all([
+            not entry.name.startswith('.'),
+            entry.name.endswith('.html'),
+            entry.is_file()
+        ]):
+            blog.append(entry.name.split('.')[0].replace('_', ' / '))
+            links.append(entry.name)
+
+    for x in sorted(blog, reverse = True):
+        atts['blog'].append({'title': x, 'link': ''})
+    for x in range(len(links)):
+        atts['blog'][x]['link'] = 'blog/' + sorted(links, reverse = True)[x]
+
     # Generate the HTML for pages
     for x in get_pages():
         with open(os.path.join(PAGE_DIR, x)) as f:
