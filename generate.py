@@ -92,7 +92,8 @@ def generate_html():
             links.append(entry.name)
 
     for x in sorted(blog, reverse = True):
-        atts['blog'].append({'title': x, 'link': ''})
+        y = x.split(' / ')[0] + ' / ' + x.split(' / ')[1].replace('-', ' ')
+        atts['blog'].append({'title': y, 'link': ''})
     for x in range(len(links)):
         atts['blog'][x]['link'] = 'blog/' + sorted(links, reverse = True)[x]
 
