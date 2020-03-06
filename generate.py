@@ -26,10 +26,10 @@ links = []
 def byTitle_key(blog):
     return blog['title']
 
-with(open(os.path.join(TEMPLATE_DIR, 'manifest_page.j2'))) as t:
+with(open(os.path.join(TEMPLATE_DIR, 'page.j2'))) as t:
     PAGE_TEMPLATE = Template(t.read())
     
-with(open(os.path.join(TEMPLATE_DIR, 'manifest_post.j2'))) as t:
+with(open(os.path.join(TEMPLATE_DIR, 'post.j2'))) as t:
     POST_TEMPLATE = Template(t.read())
 
 def get_pages():
