@@ -62,13 +62,13 @@ def generate_html():
             if os.path.isfile(os.path.join(BASE_DIR, POST_DIR, x.split('.')[0] + ".json")):
                 with open(os.path.join(BASE_DIR, POST_DIR, x.split('.')[0] + '.json')) as s:
                     j = json.load(s)
-                    if j['layout'] == 'default':
+                    t = j['layout']
+                    if t == 'default':
                         template = POST_TEMPLATE
 
                         atts['post_title'] = j['title']
                         atts['date'] = j['date']
                     else:
-                        t = j['layout']
                         template = Template(t.read())
 
                         atts['post_title'] = j['title']
@@ -92,10 +92,14 @@ def generate_html():
     for x in get_pages():
         with open(os.path.join(PAGE_DIR, x)) as f:
             if os.path.isfile(os.path.join(BASE_DIR, PAGE_DIR, x.split('.')[0] + ".json")):
-                with(open(os.path.join(TEMPLATE_DIR, x.split('.')[0] + '.j2'))) as t:
-                    template = Template(t.read())
-            else:
-                template = PAGE_TEMPLATE
+                with(open(os.path.join(BASE_DIR, PAGE_DIR, x.split('.')[0] + '.json'))) as s:
+                    j = json.load(s)
+                    t = j['layout']
+                    if t == 'default':
+                        template = PAGE_TEMPLATE
+
+                    else:
+                        template = Template(open(os.path.join(TEMPLATE_DIR, t + '.j2')).read())
                 
             content = f.read()
             atts['content'] = mistune.markdown(content) 
